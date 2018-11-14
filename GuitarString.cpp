@@ -3,13 +3,13 @@
 #include <vector>
 // Copyright 2018 <Pitou Teng>
 
-GuitarString::GuitarString(double frequency) {
+GuitarString::GuitarString(const double &frequency) {
  this->freq = frequency;
  this->ptrBuffer = std::unique_ptr <RingBuffer> (
   new RingBuffer(ceil(this->freq/44100)));
 }
 
-GuitarString::GuitarString(const std::vector<sf::Int16>& init){
+GuitarString::GuitarString(const std::vector<sf::Int16> init){
  this->ptrBuffer = std::unique_ptr <RingBuffer> (new RingBuffer(init.size()));
  for (int i = 0; i < init.size(); i++) {
   this->ptrBuffer->enqueue(init[i]);

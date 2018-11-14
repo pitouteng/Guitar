@@ -12,8 +12,8 @@
 // using namespace sf;
 class GuitarString {
  public:
-  explicit GuitarString(double frequency);
-  explicit GuitarString(const std::vector<sf::Int16>& init);
+  explicit GuitarString(const  double &frequency);
+  explicit GuitarString(const std::vector<sf::Int16> init);
   void pluck();
   void tic();
   sf::Int16 sample();
