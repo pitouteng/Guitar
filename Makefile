@@ -1,21 +1,30 @@
 
 CC = g++
-CFLAGS = -O1 -Wall -std=c++0x -lboost_unit_test_framework
-OBJECTS = RingBuffer.o GuitarString.o GStest.o
+CFLAGS = -O1 -Wall -ansi -pedantic -std=c++11 
+SFML = lsfml-system -lsfml-graphics -lsfml-window -lsfml-audio
+BOOST = -lboost_unit_test_framework
+OBJECTS = RingBuffer.o GuitarString.o GStest.o GuitarHeroLite.o
+
+
 all: GStest 
 
+# GuitarHeroLite: RingBuffer.o GuitarString.o GuitarHeroLite.o
+# 	$(CC) -o $(SFML) GuitarHeroLite RingBuffer.o GuitarString.o GuitarHeroLite.o 
+# GuitarHeroLite.o: GuitarHeroLite.cpp
+# 	$(CC) -c -std=c++11 GuitarHeroLite.cpp
+
 GStest: $(OBJECTS)
-	$(CC) -o GStest $(OBJECTS) $(CGFLAGS)
+	$(CC) -o GStest $(OBJECTS) $(CFLAGS)
 
 GStest.o: GStest.cpp 
-	$(CC)	-c GStest.cpp
+	$(CC) -c GStest.cpp 
 
 GuitarString.o: GuitarString.cpp GuitarString.hpp
-	$(CC) -c -std=c++11 GuitarString.cpp
+	$(CC) -c $(CFLAGS) GuitarString.cpp
 
 RingBuffer.o: RingBuffer.cpp RingBuffer.hpp
-	$(CC) -c -std=c++0x RingBuffer.cpp
-
+	$(CC) -c $(CFLAGS) RingBuffer.cpp
+	
 clean:
 	rm $(OBJECTS) test 
 

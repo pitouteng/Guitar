@@ -1,27 +1,32 @@
 #include "GuitarString.hpp"
-#include <SFML/Audio.hpp>
-#include <cmath>
+#include <memory>
+#include <vector>
+// Copyright 2018 <Pitou Teng>
+
 GuitarString::GuitarString(double frequency) {
  this->freq = frequency;
- this->ptrBuffer = unique_ptr <RingBuffer> (new RingBuffer(ceil(this->freq/44100)));
+ this->ptrBuffer = std::unique_ptr <RingBuffer> (
+  new RingBuffer(ceil(this->freq/44100)));
 }
 
-GuitarString::GuitarString(vector<sf::Int16> init){
- this->ptrBuffer = unique_ptr <RingBuffer> (new RingBuffer(init.size()));
- for(int i = 0; i < init.size(); i++) {
+GuitarString::GuitarString(const std::vector<sf::Int16>& init){
+ this->ptrBuffer = std::unique_ptr <RingBuffer> (new RingBuffer(init.size()));
+ for (int i = 0; i < init.size(); i++) {
   this->ptrBuffer->enqueue(init[i]);
  }
 }
 
-void GuitarString::pluck(){
- if(this->ptrBuffer->isFull()) {
+void GuitarString::pluck() {
+ if (this->ptrBuffer->isFull()) {
   this->ptrBuffer.reset(new RingBuffer(ceil(this->freq)));
  }
  int16_t t = (rand() % 65536) -32768;
- for(int i = 0; i < (this->ptrBuffer)->size(); i++) {
+
+ for (int i = 0; i < (this->ptrBuffer)->size(); i++) {
   this->ptrBuffer->enqueue(t);
  }
 }
+
 
 void GuitarString::tic() {
  ntime++;

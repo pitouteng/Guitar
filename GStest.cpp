@@ -19,13 +19,13 @@
 #include "GuitarString.hpp"
 
 BOOST_AUTO_TEST_CASE(GS) {
-  vector<sf::Int16> v;
+  std::vector<sf::Int16> v;
 
   v.push_back(0);
   v.push_back(2000);
   v.push_back(4000);
   v.push_back(-10000);
-
+  GuitarString g(v);
   BOOST_REQUIRE_NO_THROW(GuitarString gs = GuitarString(v));
 
   GuitarString gs = GuitarString(v);
