@@ -8,12 +8,15 @@
 #include <cmath>
 #include "RingBuffer.hpp"
 
+#define SAMP_RATE 44100
+#define DECAY_FACTOR .996
+
 // using namespace std;
 // using namespace sf;
 class GuitarString {
  public:
-  explicit GuitarString(const  double &frequency);
-  explicit GuitarString(const std::vector<sf::Int16> init);
+  explicit GuitarString(double frequency);
+  explicit GuitarString(std::vector<sf::Int16> init);
   void pluck();
   void tic();
   sf::Int16 sample();
@@ -21,7 +24,7 @@ class GuitarString {
  private:
   // const int sampRate = 441000;
   double freq;
-  std::unique_ptr <RingBuffer> ptrBuffer;
+  RingBuffer* ptrBuffer;
   int ntime;
 };
 #endif

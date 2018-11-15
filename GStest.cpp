@@ -27,9 +27,8 @@ BOOST_AUTO_TEST_CASE(GS) {
   v.push_back(-10000);
   GuitarString g(v);
   BOOST_REQUIRE_NO_THROW(GuitarString gs = GuitarString(v));
-
+  
   GuitarString gs = GuitarString(v);
-
   // GS is 0 2000 4000 -10000
   BOOST_REQUIRE(gs.sample() == 0);
 

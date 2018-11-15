@@ -30,7 +30,7 @@ bool RingBuffer::isFull() {
 }
 // add item x to the end
 void RingBuffer::enqueue(int16_t x) {
-  if (this->buffer.size () < this->capacity)
+  if (!isFull())
     this->buffer.push(x);
   else
     throw std::runtime_error("enqueue: can't enqueue to a full ring");
@@ -39,11 +39,11 @@ void RingBuffer::enqueue(int16_t x) {
 // delete and return item from the front
 int16_t RingBuffer::dequeue() {
   if (this->buffer.size() > 0) {
-  int16_t x = this->buffer.front();
-  this->buffer.pop();
+    int16_t x = this->buffer.front();
+    this->buffer.pop();
     return x;
   } else {
-    throw std::runtime_error("dequeue: can't dequee to an empty ring");
+    throw std::runtime_error("dequeue: can't dequeue an empty ring");
   }
 }
 

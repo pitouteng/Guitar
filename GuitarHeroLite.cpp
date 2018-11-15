@@ -29,7 +29,7 @@
 #include "RingBuffer.hpp"
 #include "GuitarString.hpp"
 
-#define CONCERT_A 220.0
+#define CONCERT_A 440.0
 #define SAMPLES_PER_SEC 44100
 
 std::vector<sf::Int16> makeSamplesFromString(GuitarString gs) {
@@ -108,4 +108,3 @@ int main() {
   }
   return 0;
 }
-

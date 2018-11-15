@@ -21,6 +21,5 @@ public:
   int16_t peek();  // return (but do not delete) item from the front
 };
 
-
 #endif
 
